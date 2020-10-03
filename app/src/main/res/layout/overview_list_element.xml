@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="session"
+            type="de.breitmeier.android.cashier.database.toolsdb.Session" />
+        <variable
+            name="sessionClickListener"
+            type="de.breitmeier.android.cashier.tools.overview.OverviewListAdapter.SessionClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:background="@drawable/round_corner"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Some random Name"
+            android:layout_margin="12dp"
+            style="@style/App.Style.StartTextView"
+            android:text="@{session.name}"
+            />
+
+        <TextView
+            android:id="@+id/tv_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="15.01.2020 19:30"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            formatMillis="@{session.startTimeMilli}"
+            />
+
+        <TextView
+            android:id="@+id/tv_space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_start_date"
+            android:text="@string/space"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            />
+
+        <TextView
+            android:id="@+id/tv_stop_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_space"
+            tools:text="16.01.2020 5:30"
+            formatMillis="@{session.endTimeMillis}"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="12dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            />
+
+        <ImageView
+            android:id="@+id/img_status"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toStartOf="@id/img_more"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="8dp"
+            android:padding="12dp"
+            />
+
+        <ImageView
+            android:id="@+id/img_more"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_navigate_next_24"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{()-> sessionClickListener.onClick(session)}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
